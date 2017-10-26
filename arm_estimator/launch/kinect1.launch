@@ -1,0 +1,7 @@
+<launch>
+
+	<node pkg="rviz" name="rviz" type="rviz" args="-d $(find arm_estimator)/launch/kinect_setup.rviz"/>
+	<include file="$(find openni_launch)/launch/openni.launch"/>	
+	<node pkg="tf" type="static_transform_publisher" name="kinect_frame" args="0.0 0.0 0.0 0.0 0.0 0.0 /openni_depth_frame /camera_link 1000"/>
+
+</launch>

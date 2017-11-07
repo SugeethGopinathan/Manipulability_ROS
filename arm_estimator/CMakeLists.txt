@@ -12,9 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   tf
-  orocos_kdl
 )
-
+find_package(orocos_kdl REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -124,5 +123,5 @@ include_directories(
 
 add_executable(arm_estimator src/arm_estimator.cpp)
 
-target_link_libraries(arm_estimator ${catkin_LIBRARIES})
+target_link_libraries(arm_estimator ${catkin_LIBRARIES} ${orocos_kdl_LIBRARIES})
 #add_dependencies(talker beginner_tutorials_generate_messages_cpp)

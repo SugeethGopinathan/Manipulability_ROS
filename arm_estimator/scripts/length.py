@@ -11,7 +11,7 @@ if __name__ == '__main__':
     rate = rospy.Rate(10.0)
     while not rospy.is_shutdown():
         try:
-            (trans,rot) = listener.lookupTransform('/ar_marker_6', '/ar_marker_7', rospy.Time(0))
+            (trans,rot) = listener.lookupTransform('/ar_marker_7', '/ar_marker_8', rospy.Time(0))
 
             rospy.loginfo("Distance between two frames are = {0:f}".format(np.linalg.norm(trans)))
 

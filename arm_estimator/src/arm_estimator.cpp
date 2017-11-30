@@ -16,14 +16,10 @@ ros::Publisher pub3;
 //pctx_control::Control controlmsg;
 geometry_msgs::Pose shoulder_pose;
 geometry_msgs::Pose grip_pose;
-
 geometry_msgs::TransformStamped test;
 
-KDL::Frame shoulder_KDL;
 
-KDL::Rotation shoulder_rot;
 
-KDL::Vector shoulder_pos;
 void function_callback (const tf::tfMessageConstPtr &msg)
 {
     for(int i=0; i < msg->transforms.size();i++){
@@ -62,16 +58,9 @@ void function_callback (const tf::tfMessageConstPtr &msg)
 
     }
 
-    shoulder_rot.Quaternion(shoulder_pose.orientation.x,shoulder_pose.orientation.y,shoulder_pose.orientation.z,shoulder_pose.orientation.w);
-
-    //shoulder_rot.
-    shoulder_pos.x(shoulder_pose.position.x);
-    shoulder_pos.y(shoulder_pose.position.y);
-    shoulder_pos.z(shoulder_pose.position.z);
 
 
 
-   KDL::Frame shoulder_KDL(shoulder_rot,shoulder_pos);
 
     pub.publish(shoulder_pose);
     pub2.publish(grip_pose);
@@ -84,7 +73,6 @@ int main(int argc, char **argv)
 
     pub = n.advertise<geometry_msgs::Pose>("shoulder_pose", 100);
     pub2 = n.advertise<geometry_msgs::Pose>("grip_pose",100);
-    pub3 = n.advertise<KDL::Frame>("test_frame",100);
     ros::Subscriber sub = n.subscribe("tf", 1000, function_callback);
 
     // Handle ROS callbacks until shutdown

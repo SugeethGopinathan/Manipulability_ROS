@@ -1,0 +1,11 @@
+<launch>
+
+	<node pkg="rviz" name="rviz" type="rviz" args="-d $(find arm_estimator)/launch/ar_test.rviz"/>
+	<!--include file="$(find openni_launch)/launch/openni.launch"/-->	
+	<node pkg="pointgrey_camera_driver" name="camera_node" type="camera_node"/>
+	
+	<node pkg="ar_track_alvar" name="individualMarkersNoKinect" type="individualMarkersNoKinect" args="3.77 0.05 0.05 /image_raw /camera_info /camera"/>
+	<node pkg="arm_estimator" name="length" type="length"/>
+	<!--node pkg="tf" type="static_transform_publisher" name="robot_frame" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /ar_marker_8 1000"/-->
+
+</launch>
